@@ -1,4 +1,4 @@
-name: Deploy site.zip to Pages
+name: Deploy to Pages
 
 on:
   push:
@@ -24,15 +24,7 @@ jobs:
       - name: Unzip into _site
         run: |
           mkdir -p _site
-          if [ -f studio-j-official.zip ]; then
-            unzip -o studio-j-official.zip -d _site
-          elif [ -f site.zip ]; then
-            unzip -o site.zip -d _site
-          else
-            echo "no zip found"
-            shopt -s extglob
-            cp -r !(_site|.github) _site/ 2>/dev/null || true
-          fi
+          unzip -o studio-j-official.zip -d _site
           ls -la _site
 
       - name: Upload artifact
